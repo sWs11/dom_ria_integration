@@ -11,10 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
+Route::get('/', 'MainController@index')->name('main');
+Route::get('/search', 'MainController@search')->name('main');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/realtyCharacteristics', 'CharacteristicsController@realtyCharacteristics')->name('realtyCharacteristics');
+Route::get('/getRealtyCharacteristicsFromApi', 'CharacteristicsController@getRealtyCharacteristicsFromApi')->name('getRealtyCharacteristicsFromApi');
+
+
+Route::get('/getRegionsFromApi', 'RegionsController@getRegionsFromApi')->name('getRegionsFromApi');
+
+
+Route::get('/testCron', 'MainController@testCron')->name('testCron');
+Route::get('/testCron2', 'MainController@testCron2')->name('testCron2');
+Route::get('/testCron3', 'MainController@testCron3')->name('testCron3');
+Route::get('/testEcho', 'MainController@testEcho')->name('testEcho');
+
+
+Route::get('orders', 'OrdersController@ordersList')->name('orders');
