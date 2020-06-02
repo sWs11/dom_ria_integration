@@ -63,7 +63,7 @@ class Cron {
         ];
 
         do {
-            $result = $dom_ria_integration->getOrdersFromApi($current_page, array_merge(['date_from' => '2020-05-31'], $filter));
+            $result = $dom_ria_integration->getOrdersFromApi($current_page, array_merge(['date_from' => '2020-06-02'], $filter));
             $count_pages = $current_page !== 0 ? $count_pages : ceil($result['count']/100);
             $orders_ext_ids = $result['items'];
 
@@ -209,8 +209,11 @@ class Cron {
                 'city_name' => isset($response_arr['city_name']) ? $response_arr['city_name'] : null,
                 'district_name' => isset($response_arr['district_name']) ? $response_arr['district_name'] : null,
                 'street_name' => isset($response_arr['street_name']) ? $response_arr['street_name'] : null,
+                'building_number_str' => isset($response_arr['building_number_str']) ? $response_arr['building_number_str'] : null,
+                'flat_number' => isset($response_arr['flat_number']) ? $response_arr['flat_number'] : null,
                 'beautiful_url' => isset($response_arr['beautiful_url']) ? $response_arr['beautiful_url'] : null,
                 'description' => isset($response_arr['description']) ? $response_arr['description'] : null,
+                'total_square_meters' => isset($response_arr['total_square_meters']) ? $response_arr['total_square_meters'] : null,
                 'price' => isset($response_arr['price']) ? $response_arr['price'] : null,
                 'main_photo' => isset($response_arr['main_photo']) ? $response_arr['main_photo'] : null,
                 'photos' => isset($response_arr['photos']) ? json_encode($response_arr['photos']) : '{}',
@@ -226,6 +229,7 @@ class Cron {
                 'realty_sale_type' => isset($response_arr['realty_sale_type']) ? $response_arr['realty_sale_type'] : null,
                 'date_end' => isset($response_arr['date_end']) ? $response_arr['date_end'] : null,
                 'advert_type_id' => isset($response_arr['advert_type_id']) ? $response_arr['advert_type_id'] : null,
+                'realty_type_id' => isset($response_arr['realty_type_id']) ? $response_arr['realty_type_id'] : null,
                 'priceArr' => isset($response_arr['priceArr']) ? json_encode($response_arr['priceArr']) : '{}',
                 'all_response' => $response,
             ]);

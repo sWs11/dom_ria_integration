@@ -47,7 +47,7 @@ class MainController extends Controller
             'city_id' => 1 // Вінниця
         ];
 
-        $result = $dom_ria_integration->getOrdersFromApi($page, array_merge(['date_from' => '2020-05-31'], $filter));
+        $result = $dom_ria_integration->getOrdersFromApi($page, array_merge(['date_from' => '2020-06-02'], $filter));
 
         dd($result);
     }

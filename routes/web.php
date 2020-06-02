@@ -29,4 +29,4 @@ Route::get('/testCron3', 'MainController@testCron3')->name('testCron3');
 Route::get('/testEcho', 'MainController@testEcho')->name('testEcho');
 
 
-Route::get('orders', 'OrdersController@ordersList')->name('orders');
+Route::get('orders/{page?}', 'OrdersController@ordersList')->name('orders')->where(['page' => '[0-9]+']);

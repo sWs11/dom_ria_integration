@@ -110,8 +110,28 @@ class Order extends Model
         'created_date',
         'realty_sale_type',
         'date_end',
-        'advert_type_id',
+        'realty_type_id',
+        'realty_type_id',
+        'building_number_str',
+        'flat_number',
+        'total_square_meters',
         'priceArr',
         'all_response',
     ];
+
+    public function getMainPhotoAttribute($value)
+    {
+        $arr = explode('.', $value);
+        if(!isset($arr[1])) {
+            debug([
+                '$value' => $value,
+                'id' => $this->id,
+                'count' => count($arr),
+            ]);
+
+            return '';
+        }
+
+        return $arr[0] . 'b.' . $arr[1];
+    }
 }
