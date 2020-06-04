@@ -7,29 +7,37 @@
 @endpush
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <form>
+    <div class="container mb-2">
+        <form class="w-100">
+            <div class="row">
                 <div class="col-3">
-                    <select name="categories" id="category_select">
-                        <option value=""></option>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->ext_id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-3">
-                    <select name="realty_types" id="realty_type_select">
-                        <option value=""></option>
-                        @foreach($realty_types as $realty_type)
-                            <option value="{{ $realty_type->ext_id }}">{{ $realty_type->name }}</option>
-                        @endforeach
-                    </select>
+                    <div class="row justify-content-center">
+                        <div class="select_wr">
+                            <select name="categories" id="category_select">
+                                <option value=""></option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->ext_id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-3">
                     <div class="row justify-content-center">
                         <div class="select_wr">
-                            <select id="operation_type_select" name="operation_type">
+                            <select name="realty_type_id" id="realty_type_select">
+                                <option value=""></option>
+                                @foreach($realty_types as $realty_type)
+                                    <option value="{{ $realty_type->ext_id }}">{{ $realty_type->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">
+                        <div class="select_wr">
+                            <select id="operation_type_select" name="advert_type_id">
                                 <option value=""></option>
                                 @foreach($operation_types as $operation_type)
                                     <option value="{{ $operation_type->ext_id }}">{{ $operation_type->name }}</option>
@@ -38,8 +46,15 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">
+                        <div class="select_wr">
+                            <button class="btn btn-success w-100">Поиск</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="container">
         <div class="row justify-content-center">

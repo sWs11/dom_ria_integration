@@ -52,6 +52,9 @@ class Cron {
 
         return $response;
     }
+
+
+
     public function getOrdersFromDomRia() {
         $count_pages = 1;
         $current_page = 0;
@@ -63,7 +66,7 @@ class Cron {
         ];
 
         do {
-            $result = $dom_ria_integration->getOrdersFromApi($current_page, array_merge(['date_from' => '2020-06-02'], $filter));
+            $result = $dom_ria_integration->getOrdersFromApi($current_page, array_merge(['date_from' => '2020-06-03'], $filter));
             $count_pages = $current_page !== 0 ? $count_pages : ceil($result['count']/100);
             $orders_ext_ids = $result['items'];
 

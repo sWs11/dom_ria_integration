@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\OperationType;
 use App\Models\Order;
 use App\Models\RealtyType;
+//use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -17,7 +19,8 @@ class OrdersController extends Controller
         $realty_types = RealtyType::all();
         $operation_types = OperationType::all();
 
-        $orders = Order::select([
+
+        $orders_query = Order::select([
                 'orders.*',
                 'operation_types.name AS operation_type_name',
                 'realty_types.name AS realty_type_name',
@@ -31,8 +34,15 @@ class OrdersController extends Controller
             ->offset($limit * ($page - 1))
             ->limit($limit)
             ->orderBy('id', 'DESC')
-            ->get()
         ;
+
+//        dd(get_class($orders_query));
+
+        if(!empty($request->query())){
+            $this->buildFilterQuery($request->query(), $orders_query);
+        }
+
+        $orders = $orders_query->get();
 
         debug($orders->toArray());
 
@@ -42,5 +52,18 @@ class OrdersController extends Controller
             'categories' => $categories,
             'operation_types' => $operation_types
         ]);
+    }
+
+    private function buildFilterQuery(array $filter_params, Builder $query) {
+        $available_filter_fields = [
+            'realty_type_id' => 'orders.realty_type_id',
+            'advert_type_id' => 'orders.advert_type_id',
+        ];
+
+        foreach ($filter_params as $key => $value) {
+            if(array_key_exists($key, $available_filter_fields)) {
+                $query->where($available_filter_fields[$key], $value);
+            }
+        }
     }
 }
