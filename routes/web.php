@@ -18,7 +18,9 @@ Route::get('/search', 'MainController@search')->name('main');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/realtyCharacteristics', 'CharacteristicsController@realtyCharacteristics')->name('realtyCharacteristics');
 Route::get('/getRealtyCharacteristicsFromApi', 'CharacteristicsController@getRealtyCharacteristicsFromApi')->name('getRealtyCharacteristicsFromApi');
-
+Route::get('/getCategories', 'CategoryController@getCategories')->name('getCategories');
+Route::get('/getRealtyTypes', 'RealtyTypesController@getRealtyTypes')->name('getRealtyTypes');
+Route::get('/getOperationTypes', 'OperationTypesController@getOperationTypes')->name('getOperationTypes');
 
 Route::get('/getRegionsFromApi', 'RegionsController@getRegionsFromApi')->name('getRegionsFromApi');
 
